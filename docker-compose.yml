@@ -4,6 +4,8 @@ services:
     build: ./mysql
     environment:
       MYSQL_ROOT_PASSWORD: pass
+    volumes:
+      - db:/var/lib/mysql
   php:
     build: ./php
     volumes:
@@ -18,3 +20,5 @@ services:
       - ./html:/html
     depends_on:
       - php
+volumes:
+  db:
