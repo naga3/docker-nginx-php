@@ -1,0 +1,20 @@
+version: '2'
+services:
+  mysql:
+    build: ./mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: pass
+  php:
+    build: ./php
+    volumes:
+      - ./html:/html
+    depends_on:
+      - mysql
+  nginx:
+    build: ./nginx
+    ports:
+      - '80:80'
+    volumes:
+      - ./html:/html
+    depends_on:
+      - php
